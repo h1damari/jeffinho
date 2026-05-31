@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Exemplo </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <img src="https://raw.githubusercontent.com/IFPR-Desenvolvimento-Web/Formularios-atividade/refs/heads/main/market.webp" alt="empresa">
+        <form action="/submit" method="POST">
+            <h3>Cadastre-se </h3>
+            <div class="form-group">
+                <label for="nome">Nome: </label>
+                <input type="text" id="nome" name="nome" placeholder="nome completo…">
+            </div>
+
+            <div class="form-group">
+                <label for="data_nascimento">Data de Nascimento: </label>
+                <input id="data_nascimento" name="data_nascimento" type="date">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email: </label>
+                <input type="email" id="email" name="email" placeholder="jeffinho@gmail.com">
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone: </label>
+                <input type="tel" id="telefone" name="telefone" placeholder="+xx (xx) xxxxx-xxxx">
+            </div>
+
+            <div class="form-group">
+                <label for="endereco">Endereço: </label>
+                <input type="text" id="endereco" name="enedreco" placeholder="Rua Emirado Barbosa, Vila A, 167">
+            </div>
+
+            <div class="form-group">
+                <label for="bolsa">Possui bolsa família?</label>
+                <input type="radio" name="bolsa" id="sim">
+                <label for="sim">Sim</label>
+                <input type="radio" name="bolsa" id="nao">
+                <label for="nao">Não</label>
+            </div>
+
+            <div class="form-group">
+                <label>Habilidades: </label>
+                <label for="html">
+                    <input type="checkbox" id="html" name="habilidades" value="HTML">HTML
+                </label>
+
+                <label for="css">
+                    <input type="checkbox" id="css" name="habilidades" value="CSS">CSS
+                </label>
+
+                <label for="js">
+                    <input type="checkbox" id="js" name="habilidades" value="JS">JavaScript
+                </label>
+
+            </div>
+
+            <div class="form-group">
+                <label for="pais">País: </label>
+                <select id="pais" name="pais">
+                    <option value="br">Brasil </option>
+                    <option value="py">Paraguai </option>
+                    <option value="ar">Argentina </option>
+                    <option value="cl">Chile </option>
+                    <option value="pk">Paquistão </option>
+                </select>
+            </div>
+
+            <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+
+            <script type="text/javascript" 
+                src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js">
+                </script>
+
+            <div class="form-group">
+                <label for="comentarios">Comentários:</label>
+                <textarea id="comentarios" name="comentarios"></textarea>
+            </div>
+
+            <script>
+                new FroalaEditor('#comentarios');
+            </script>
+
+            <div class="form-group">
+                <button type="submit">Enviar</button>
+            </div>
+
+        </form>
+
+</body>
+
+</html>
