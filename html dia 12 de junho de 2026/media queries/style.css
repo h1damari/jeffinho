@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+* {
+   
+    font-family: "Playfair Display", serif;
+    font-weight: 300;
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+}
+
+.img-pequena{
+    display: none;
+}
+
+.conteiner{
+    width: 70%;
+    min-height: 50vh;
+
+    margin: 25vh auto;
+    text-align: center;
+}
+
+.caixa{
+    width: 18%;
+    height: 120px;
+    margin: 4px;
+
+    border: dotted 1px #000;
+    float: left;
+}
+
+.caixa-1{
+    background-color: lightblue;
+}
+
+.caixa-2{
+    background-color: lightgoldenrodyellow;
+}
+
+.caixa-3{
+    background-color: lightpink;
+}
+
+.caixa-4{
+    background-color: lightgreen;
+}
+
+.caixa-5{
+    background-color: lightseagreen;
+}
+
+/* Media Queries */
+
+@media (max-width: 480px){
+
+    body{
+        background-color: #000;
+        color: #fff;
+    }
+
+    .caixa{
+        width: 100%;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px){
+
+    body{
+        background-color: #21f800;
+        color: #fff;
+    }
+
+    .caixa{
+        width: 48%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 992px){
+
+    body{
+        background-color: #0008f8;
+        color: #fff;
+    }
+
+    .caixa{
+        width: 18%;
+    }
+}
+
+@media (orientation: landscape){
+
+    body{
+        background-color: lightslategray;
+    }
+}
+
+@media (print) {
+
+    .conteiner-caixas{
+        display: none;
+    }
+
+}
+
+@media (max-width: 769px){
+
+    .img-pequena{
+        display: block;
+    }
+
+    .img-grande{
+        display: none;
+    }
+}
