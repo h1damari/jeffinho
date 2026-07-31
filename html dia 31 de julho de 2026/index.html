@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .figurinhas{
+            width: 1500px;
+            height: 500px;
+            background-color: rgb(213, 135, 225);
+            border: solid 3px black;
+            border-radius: 10px;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+
+            align-items: center;
+        }
+        
+        .figura img{
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .figura{
+            background-color: aliceblue;
+            width: 200px;
+            text-align: center;;
+        }
+
+
+        .robo-1{
+            order: 5;
+        }
+
+        .robo-1:hover{
+            align-self: stretch;
+        }
+
+        .robo-2{
+            order: 1;
+        }
+
+        .robo-2:hover{
+            align-self: stretch;
+        }
+
+        .robo-3{
+            order: 1;
+        }
+
+        .robo-3:hover{
+            align-self: stretch;
+        }
+
+        .robo-4{
+            order: 1;
+        }
+
+        .robo-4:hover{
+            align-self: stretch;
+        }
+
+        .robo-5{
+            order: 0;
+        }
+        
+        .robo-5:hover{
+            align-self: stretch;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="figurinhas">
+
+        <div class="figura robo-1">
+            <img src="https://robohash.org/hidamari" alt="">
+            <h2>hidamari</h2>
+        </div>
+
+        <div class="figura robo-2">
+            <img src="https://robohash.org/just" alt="">
+            <h2>just</h2>
+        </div>
+
+        <div class="figura robo-3">
+            <img src="https://robohash.org/andew" alt="">
+            <h2>andrew</h2>
+        </div>
+
+        <div class="figura robo-4">
+            <img src="https://robohash.org/otaviobunda" alt="">
+            <h2>otqavio</h2>
+        </div>
+
+
+        <div class="figura robo-5">
+            <img src="https://robohash.org/adriel" alt="">
+            <h2>adriel</h2>
+        </div>
+
+
+    </div>
+</body>
+</html>
