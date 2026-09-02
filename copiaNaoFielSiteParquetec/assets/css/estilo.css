@@ -272,10 +272,7 @@ header .menu .navegacao .idiomas img {
 }
 
 .videos .conteiner {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 50px;
+    
 }
 
 .videos .videos-yt {
