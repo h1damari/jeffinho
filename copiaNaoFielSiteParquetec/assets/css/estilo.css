@@ -1,24 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
-    font-family: 'Ubuntu', sans-serif;
+body {
+    font-family: "Ubuntu", sans-serif;
     color: black;
 }
 
-.conteiner{
+.conteiner {
     width: 1440px;
     margin: 0 auto;
 }
 
-.titulo-secao{
+.titulo-secao {
     text-align: center;
     margin-bottom: 50px;
     font-size: 44px;
@@ -28,9 +28,11 @@ body{
 
 /*CABEÇALHO*/
 
-header{
-
-    background: linear-gradient(to bottom, rgba(220, 220, 220, 0.9) 0%, rgba(245, 245, 245, 0.6) 45%, rgba(255, 255, 255, 0) 100%);
+header {
+    background: linear-gradient(to bottom,
+            rgba(220, 220, 220, 0.9) 0%,
+            rgba(245, 245, 245, 0.6) 45%,
+            rgba(255, 255, 255, 0) 100%);
 
     width: 100%;
     height: 128px;
@@ -45,7 +47,7 @@ header{
     z-index: 999;
 }
 
-header .menu{
+header .menu {
     background-color: white;
     width: 96%;
     height: 85px;
@@ -55,8 +57,7 @@ header .menu{
     display: flex;
 }
 
-header .menu .navegacao{
-
+header .menu .navegacao {
     list-style: none;
 
     flex-basis: 100%;
@@ -65,24 +66,24 @@ header .menu .navegacao{
     justify-content: space-around;
 }
 
-header .menu .navegacao a{
+header .menu .navegacao a {
     text-decoration: none;
     color: black;
     font-weight: 500;
 }
 
-header .menu .navegacao .idiomas{
+header .menu .navegacao .idiomas {
     display: flex;
     gap: 5px;
 }
 
-header .menu .navegacao .idiomas img{
+header .menu .navegacao .idiomas img {
     width: 25px;
 }
 
 /* VIDEO BANNER */
 
-.video-banner{
+.video-banner {
     width: 100%;
 
     position: relative;
@@ -90,17 +91,16 @@ header .menu .navegacao .idiomas img{
     z-index: -1;
 }
 
-.video-banner video{
+.video-banner video {
     width: 100%;
     height: 600px;
     object-fit: cover;
     display: block;
 }
 
-
 /*CONHCECA-PARQUE*/
 
-.conheca-parque .conteiner{
+.conheca-parque .conteiner {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -109,15 +109,15 @@ header .menu .navegacao .idiomas img{
     padding: 50px 0;
 }
 
-.conheca-parque .slogan{
+.conheca-parque .slogan {
     flex-basis: 50%;
 }
 
-.conheca-parque .slogan img{
+.conheca-parque .slogan img {
     max-width: 100%;
 }
 
-.conheca-parque .texto{
+.conheca-parque .texto {
     padding-top: 27px;
     flex-basis: 50%;
     font-size: 18px;
@@ -126,11 +126,11 @@ header .menu .navegacao .idiomas img{
     color: #2d2d2d;
 }
 
-.conheca-parque .texto p{
+.conheca-parque .texto p {
     margin-bottom: 15px;
 }
 
-.conheca-parque .btn-conheca-parque{
+.conheca-parque .btn-conheca-parque {
     text-decoration: none;
     color: #fff;
     background-color: #1478bb;
@@ -142,11 +142,74 @@ header .menu .navegacao .idiomas img{
     transition: all 0.3s;
 }
 
-.conheca-parque .btn-conheca-parque:hover{
+.conheca-parque .btn-conheca-parque:hover {
     background-color: #006627;
     box-shadow: 5px 5px 10px #00000050;
 }
 
+/* O AMBIENTE */
+
+.o-ambiente .conteiner {
+    width: 55%;
+    margin-bottom: 50px;
+    padding: 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 0 10px #00000020;
+    border-radius: 25px;
+}
+
+.o-ambiente .slogan img {
+    max-width: 90px;
+    transition: all 0.3s;
+}
+
+.o-ambiente .conteiner:hover .slogan img {
+    transform: scale(0.9);
+}
+
+.o-ambiente .texto {
+    padding-top: 15px;
+    width: 50%;
+    font-size: 25px;
+    font-weight: 350;
+    color: #2d2d2d;
+
+    text-align: center;
+}
+
+.o-ambiente .texto p {
+    margin-bottom: 15px;
+}
+
+.o-ambiente .btn-o-ambiente {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(to right,
+            rgba(1, 205, 45, 0.9) 0%,
+            rgb(0, 192, 38) 45%,
+            rgb(0, 154, 31) 100%);
+    border-radius: 10px;
+    padding: 15px 50px;
+
+    transition: all 0.3s;
+}
+
+.o-ambiente .conteiner:hover .btn-o-ambiente {
+    text-decoration: underline;
+    box-shadow: 5px 5px 10px #00000050;
+    transform: scale(1.1);
+}
+
+/* DESTAQUE */
+
+.em-destaque h3 {
+    margin-bottom: 40px;
+}
 
 /* NOSSO BLOG */
 
@@ -154,28 +217,34 @@ header .menu .navegacao .idiomas img{
     background-color: #f5f3f3;
 }
 
-.nosso-blog .publicacoes{
+.nosso-blog h3 {
+    margin-top: 150px;
+}
+
+.nosso-blog .publicacoes {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 50px;
 }
 
-.nosso-blog .publicacao{
+.nosso-blog .publicacao {
     flex-basis: 30%;
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;
-    box-shadow:  0 0 10px #00000010;
+    box-shadow: 0 0 10px #00000010;
+
+    margin-bottom: 100px;
 
     transition: all 0.3s;
 }
 
-.nosso-blog .publicacao img{
+.nosso-blog .publicacao img {
     max-width: 100%;
 }
 
-.nosso-blog .publicacao h2{
+.nosso-blog .publicacao h2 {
     font-size: 17px;
     font-weight: 500;
     line-height: 20px;
@@ -183,14 +252,47 @@ header .menu .navegacao .idiomas img{
     margin: 10px 0 10px 0;
 }
 
-.nosso-blog .publicacao p{
+.nosso-blog .publicacao p {
     font-size: 14px;
     font-weight: 300;
     line-height: 20px;
     color: #2d2d2d;
 }
-.nosso-blog .publicacao:hover{
+
+.nosso-blog .publicacao:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px #0000005a;
 }
 
+/* VIDEOS */
+
+.videos {
+    background-color: #f5f3f3;
+
+}
+
+.videos .conteiner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+}
+
+.videos .videos-yt {
+    display: flex;
+    margin-bottom: 100px;
+
+    transition: all 0.3s;
+}
+
+.videos .videos-yt .video-yt{
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.videos .video-yt img {
+    border-radius: 10px;
+    object-fit: cover;
+    height: 100%;
+    max-width: 350px;
+}
