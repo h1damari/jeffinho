@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .sucesso {
+            background-color: green;
+            color: white;
+        }
+
+        .erro{
+            background-color: red;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <input type="text" value="">
+
+    <span id="revelar-senha">olinho</span>
+
+    <div id="mensagem"></div>
+
+    <script>
+        const campoTexto = document.querySelector("input")
+
+
+        const mensagem = document.querySelector("#mensagem")
+
+        campoTexto.addEventListener("input", () => {
+
+            let digitado = campoTexto.value
+            mensagem.classList.remove("erro")
+            mensagem.classList.remove("sucesso")
+
+            if (digitado == "chocolate") {
+                mensagem.innerText = "Meu sabor de sorvete favorito!!!"
+                mensagem.classList.add("sucesso")
+            } else if (digitado == "flocos") {
+                mensagem.innerText = "Flocos é bom demais!!!"
+                mensagem.classList.add("sucesso")
+            } else if (digitado == "queijo") {
+                mensagem.innerText = "Que gostoso duvidoso..."
+                mensagem.classList.add("erro")
+            } else {
+                mensagem.innerText = "Não temos em nosso cardápio"
+                mensagem.classList.add("erro")
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
