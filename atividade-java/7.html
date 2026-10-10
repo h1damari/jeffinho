@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7</title>
+</head>
+
+<style>
+    body {
+        text-align: center
+    }
+
+    img {
+        width: 260px;
+        border-radius: 12px;
+        cursor: pointer
+    }
+
+</style>
+
+<body>
+
+    <p id="fala">Passe o mouse sobre o personagem!</p>
+    <img id="personagem" src="imagens/dipper.jpg" alt="">
+    <p><button id="trocar">Trocar personagem</button></p>
+
+
+    <script>
+        const img = document.getElementById("personagem");
+        const fala = document.getElementById("fala");
+        const imagens = ["imagens/dipper.jpg", "imagens/bob.jpg", "imagens/grose.jpg"];
+        let atual = 0;
+        img.addEventListener("mouseenter", () => fala.textContent = "Olá! Prontos para um mistério?");
+        img.addEventListener("mouseleave", () => fala.textContent = "Ei, volte aqui! Já vai embora?");
+        img.addEventListener("mousemove", () => fala.textContent = "Cuidado, tem algo paranormal por aqui...");
+        img.addEventListener("click", () => fala.textContent = "Ai! Isso fez cócegas!");
+        document.getElementById("trocar").addEventListener("click", () => {
+            atual = (atual + 1) % imagens.length;
+            img.src = imagens[atual];
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10</title>
+</head>
+
+<body>
+
+    <img id="foto" src="" alt="Imagem" width="600" height="400"><br>
+    <button id="anterior">Anterior</button>
+    <button id="proxima">Próxima</button>
+
+    <script>
+
+        const imagens = [
+            "https://picsum.photos/id/237/600/400",
+            "https://picsum.photos/id/238/600/400",
+            "https://picsum.photos/id/239/600/400",
+            "https://picsum.photos/id/240/600/400"
+        ];
+        let indice = 0;
+        const foto = document.getElementById("foto");
+        function mostrar() { foto.src = imagens[indice]; }
+        function trocarImagem() {
+            mostrar();                                   // atualiza o src
+            indice = (indice + 1) % imagens.length;      // avança e volta à primeira no final
+        }
+        trocarImagem();
+        setInterval(trocarImagem, 5000);
+        // Desafio: botões
+        document.getElementById("proxima").addEventListener("click", () => {
+            indice = (indice + 1) % imagens.length; mostrar();
+        });
+        document.getElementById("anterior").addEventListener("click", () => {
+            indice = (indice - 1 + imagens.length) % imagens.length; mostrar();
+        });
+
+
+    </script>
+
+</body>
+
+</html>
