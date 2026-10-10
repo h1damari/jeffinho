@@ -1,8 +1,0 @@
-No Frontend, o JavaScript roda no navegador (client-side) e tem como objetivo dar interatividade e dinamismo às páginas, que sem ele seriam estáticas (HTML = estrutura, CSS = aparência, JS = comportamento). Principais usos:
-
-- Manipular o DOM: criar, remover e alterar elementos e estilos sem recarregar a página.
-- Responder a eventos do usuário (clique, teclado, mouse, envio de formulário).
-- Validar formulários no navegador, antes de enviar ao servidor.
-- Criar animações e efeitos visuais (Canvas, WebGL).
-- Consumir APIs e atualizar dados dinamicamente.
-- Armazenar dados localmente (LocalStorage), como tema e preferências.
