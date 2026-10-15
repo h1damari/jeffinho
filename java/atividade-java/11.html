@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11</title>
+</head>
+
+<body>
+    <input type="text" id="nome" placeholder="Nome:">
+    <span id="msgNome"></span>
+    <input type="email" id="email" placeholder="E-mail: ">
+    <span id="msgEmail"></span>
+    <input type="password" id="senha" placeholder="Senha: ">
+    <span id="msgSenha"></span>
+    <input type="password" id="confirmarSenha" placeholder="Confirme sua Senha: ">
+    <span id="msgCS"></span>
+
+    <button id="visibilidade">Reveal Senha</button>
+
+    <script>
+        const nome = document.querySelector('#nome')
+        const msgNome = document.querySelector('#msgNome')
+
+        const email = document.querySelector('#email')
+        const msgEmail = document.querySelector('#msgEmail')
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
+        const senha = document.querySelector('#senha')
+        const msgSenha = document.querySelector('#msgSenha')
+        const senhaRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
+        const confirmarSenha = document.querySelector('#confirmarSenha')
+        const msgCS = document.querySelector('#msgCS')
+
+        const visibilidade = document.querySelector('#visibilidade')
+
+
+        nome.addEventListener('input', () => {
+            if (nome.value.trim().length < 3) {
+                msgNome.style.color = 'red'
+                msgNome.textContent = 'Digite pelo menos 3 caracteres'
+                nome.style.borderColor = 'red';
+            }
+            else {
+                nome.style.borderColor = 'green';
+                msgNome.textContent = ''
+            }
+        })
+
+        email.addEventListener('input', () => {
+            if (emailRegex.test(email.value)) {
+                email.style.borderColor = 'green';
+                msgEmail.textContent = ''
+            }
+            else {
+                msgEmail.style.color = 'red'
+                msgEmail.textContent = 'E-mail Inválido'
+                email.style.borderColor = 'red';
+            }
+        })
+
+        senha.addEventListener('input', () => {
+            if (senhaRegex.test(senha.value)) {
+                senha.style.borderColor = 'green';
+                msgSenha.textContent = ''
+            }
+            else {
+                msgSenha.style.color = 'red'
+                msgSenha.textContent = 'Senha Inválida'
+                senha.style.borderColor = 'red';
+            }
+        })
+
+        confirmarSenha.addEventListener('input', () => {
+            if (confirmarSenha.value === senha.value) {
+                confirmarSenha.style.borderColor = 'green';
+                msgCS.textContent = ''
+            }
+            else {
+                msgCS.style.color = 'red'
+                msgCS.textContent = 'Senha Incorreta'
+                confirmarSenha.style.borderColor = 'red';
+            }
+        })
+
+        visibilidade.addEventListener('click', () => {
+            if (senha.type == 'password') {
+                senha.type = 'text'
+                confirmarSenha.type = 'text'
+                visibilidade.textContent = 'Hide Senha'
+            }
+            else {
+                senha.type = 'password'
+                confirmarSenha.type = 'password'
+                visibilidade.textContent = 'Show Senha'
+            }
+        })
+
+
+    </script>
+
+</body>
+
+</html>
