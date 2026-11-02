@@ -25,8 +25,8 @@
         const foto = document.getElementById("foto");
         function mostrar() { foto.src = imagens[indice]; }
         function trocarImagem() {
-            mostrar();                                   // atualiza o src
-            indice = (indice + 1) % imagens.length;      // avança e volta à primeira no final
+            mostrar();
+            indice = (indice + 1) % imagens.length;
         }
         trocarImagem();
         setInterval(trocarImagem, 5000);
