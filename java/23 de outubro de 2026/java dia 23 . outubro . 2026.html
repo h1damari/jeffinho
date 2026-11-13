@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript na Prática</title>
+  <style>
+    :root {
+      --navy: #102238;
+      --navy-2: #183650;
+      --blue: #0866e8;
+      --blue-light: #eaf4ff;
+      --yellow: #ffdc35;
+      --text: #172b43;
+      --muted: #53677d;
+      --border: #d5e4f3;
+      --surface: #ffffff;
+      --background: #f3f8fc;
+      --success: #147d3f;
+      --success-bg: #e8f9ed;
+      --danger: #b42318;
+      --danger-bg: #fff0ef;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    header {
+      color: white;
+      background: linear-gradient(120deg, var(--navy), var(--navy-2));
+      padding: 32px max(22px, calc((100% - 1180px) / 2));
+    }
+    .brand { display: flex; align-items: center; gap: 20px; }
+    .js-logo {
+      display: grid; place-items: center; flex: 0 0 74px; height: 74px;
+      border-radius: 13px; background: var(--yellow); color: #111;
+      font-size: 31px; font-weight: 900;
+    }
+    h1 { margin: 0; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
+    h1 span { color: var(--yellow); }
+    header p { margin: 10px 0 0; color: #d9e8f7; max-width: 760px; }
+    main { max-width: 1180px; margin: 26px auto; padding: 0 18px; }
+    .intro { margin: 0 0 20px; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .card {
+      min-width: 0; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px; box-shadow: 0 3px 12px #18365008;
+    }
+    .card h2 { font-size: 1.18rem; margin: 0 0 8px; }
+    .card > p { margin: 0 0 14px; color: #344e6c; }
+    .wide { grid-column: 1 / -1; }
+    pre {
+      margin: 12px 0; padding: 16px; overflow-x: auto; border-radius: 8px;
+      background: #102334; color: #e9f4ff; font: 13px/1.55 ui-monospace, SFMono-Regular, Consolas, monospace;
+      white-space: pre;
+    }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .demo {
+      border: 1px solid var(--border); background: #fbfdff; border-radius: 9px;
+      padding: 14px; margin-top: 12px;
+    }
+    button {
+      border: 0; border-radius: 6px; padding: 10px 15px; background: var(--blue);
+      color: white; cursor: pointer; font: inherit; font-weight: 650;
+    }
+    button:hover { filter: brightness(.93); }
+    button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 3px solid #8bbcff; outline-offset: 2px;
+    }
+    .secondary { background: #e7eef7; color: var(--text); }
+    .status { min-height: 1.5em; margin: 8px 0 0; font-weight: 600; }
+    .success { color: var(--success); }
+    .error { color: var(--danger); }
+    .highlight { background: #dff7e5 !important; color: #155d30 !important; border-color: #9ed9ae !important; }
+    .user-list { padding-left: 22px; margin: 10px 0 0; }
+    .form-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+    label { display: block; margin: 11px 0 5px; font-weight: 650; }
+    input, select {
+      width: 100%; padding: 10px 11px; border: 1px solid #b9cadd; border-radius: 6px;
+      font: inherit; background: white; color: var(--text);
+    }
+    input[aria-invalid="true"], select[aria-invalid="true"] { border-color: var(--danger); }
+    .field-error { min-height: 1.25em; color: var(--danger); font-size: .88rem; margin: 3px 0 0; }
+    .hint { font-size: .9rem; color: var(--muted); }
+    .tip { background: var(--blue-light); border: 1px solid #c8e2ff; padding: 12px; border-radius: 8px; margin-top: 12px; }
+    footer { text-align: center; padding: 22px; background: var(--navy); color: #e5eff9; }
+    @media (max-width: 760px) {
+      .grid, .form-layout { grid-template-columns: 1fr; }
+      .wide { grid-column: auto; }
+      header { padding: 25px 18px; }
+      .brand { align-items: flex-start; gap: 14px; }
+      .js-logo { flex-basis: 58px; height: 58px; font-size: 24px; }
+      .card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="js-logo" aria-hidden="true">JS</div>
+      <div>
+        <h1>JavaScript <span>na Prática</span></h1>
+        <p>Pequenos exemplos, grandes possibilidades. Explore os exemplos e veja o que acontece quando você interage com a página.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <p class="intro">Cada seção apresenta uma situação comum no desenvolvimento web. Os exemplos podem ser testados diretamente nesta página.</p>
+
+    <div class="grid">
+      <section class="card">
+        <h2>1. Alterando o conteúdo</h2>
+        <p>O JavaScript pode modificar o texto de um elemento HTML sem recarregar a página.</p>
+        <pre><code>&lt;h3 id="mensagem"&gt;Olá!&lt;/h3&gt;
+&lt;button id="btnMensagem"&gt;Clique aqui&lt;/button&gt;
+
+&lt;script&gt;
+  const mensagem = document.querySelector("#mensagem");
+
+  document.querySelector("#btnMensagem")
+    .addEventListener("click", () =&gt; {
+      mensagem.textContent = "Olá, JavaScript!";
+    });
+&lt;/script&gt;</code></pre>
+        <div class="demo">
+          <h3 id="mensagem">Olá!</h3>
+          <button id="btnMensagem">Clique aqui</button>
+          <p class="status" id="statusMensagem" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2. Trabalhando com eventos</h2>
+        <p>Eventos permitem responder a ações, como cliques, digitação e mudanças em campos.</p>
+        <pre><code>const botao = document.querySelector("#btnContador");
+const resultado = document.querySelector("#contador");
+
+let cliques = 0;
+
+botao.addEventListener("click", () =&gt; {
+  cliques++;
+  resultado.textContent = cliques;
+});</code></pre>
+        <div class="demo">
+          <p>Você clicou <strong id="contador">0</strong> vez(es).</p>
+          <button id="btnContador">Contar clique</button>
+          <button class="secondary" id="btnZerar">Zerar</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3. Manipulando o DOM e o CSS</h2>
+        <p>O DOM representa os elementos da página. Podemos localizar elementos e alternar classes CSS.</p>
+        <pre><code>const caixa = document.querySelector("#caixa");
+
+document.querySelector("#btnEstilo")
+  .addEventListener("click", () =&gt; {
+    caixa.classList.toggle("highlight");
+  });</code></pre>
+        <div class="demo">
+          <div id="caixa" style="padding: 16px; border: 1px solid #cbd8e6; border-radius: 7px; background: #f1f5f9;">
+            Esta caixa pode mudar de estilo.
+          </div>
+          <p><button id="btnEstilo" style="margin-top: 10px;">Alternar estilo</button></p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>4. Arrays e repetição</h2>
+        <p>Arrays guardam conjuntos de valores. Métodos como <code>forEach()</code> ajudam a percorrer os itens.</p>
+        <pre><code>const linguagens = ["HTML", "CSS", "JavaScript"];
+
+linguagens.forEach((linguagem) =&gt; {
+  // Cria um item para cada linguagem
+  console.log(linguagem);
+});</code></pre>
+        <div class="demo">
+          <button id="btnLinguagens">Mostrar linguagens</button>
+          <ul id="listaLinguagens" class="user-list"></ul>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>5. Funções e cálculos</h2>
+        <p>Funções agrupam instruções que podem ser reutilizadas. Neste exemplo, calculamos a soma de dois números.</p>
+        <pre><code>function somar(a, b) {
+  return a + b;
+}
+
+const resultado = somar(5, 3);
+console.log(resultado); // 8</code></pre>
+        <div class="demo">
+          <label for="numeroA">Primeiro número</label>
+          <input type="number" id="numeroA" value="5">
+          <label for="numeroB">Segundo número</label>
+          <input type="number" id="numeroB" value="3">
+          <p><button id="btnSomar">Somar</button></p>
+          <p class="status" id="resultadoSoma" aria-live="polite">Resultado: 8</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>6. Consumindo dados de uma API</h2>
+        <p>Com <code>fetch()</code>, podemos solicitar dados de um serviço externo. Este exemplo busca usuários de uma API pública.</p>
+        <pre><code>async function carregarUsuarios() {
+  const resposta = await fetch(
+    "https://jsonplaceholder.typicode.com/users"
+  );
+  const usuarios = await resposta.json();
+
+  console.log(usuarios);
+}</code></pre>
+        <div class="demo">
+          <button id="btnUsuarios">Carregar usuários</button>
+          <p class="hint">Este exemplo precisa de conexão com a internet.</p>
+          <p class="status" id="statusUsuarios" aria-live="polite"></p>
+          <ul id="listaUsuarios" class="user-list"></ul>
+        </div>
+      </section>
+
+      <section class="card wide">
+        <h2>7. Validação de formulários</h2>
+        <p>Antes de processar os dados, o JavaScript pode verificar se os campos foram preenchidos corretamente e apresentar mensagens claras para o usuário.</p>
+        <div class="form-layout">
+          <div>
+            <pre><code>formulario.addEventListener("submit", (evento) =&gt; {
+  evento.preventDefault();
+
+  // Verifica os campos e exibe os erros.
+  if (!nome.value.trim()) {
+    mostrarErro("nome", "Informe seu nome.");
+  }
+
+  if (!emailValido(email.value)) {
+    mostrarErro("email", "Informe um e-mail válido.");
+  }
+
+  if (senha.value.length &lt; 8) {
+    mostrarErro("senha", "Use pelo menos 8 caracteres.");
+  }
+});</code></pre>
+            <div class="tip">
+              <strong>Importante:</strong> a validação no navegador melhora a experiência do usuário, mas não substitui a validação no servidor. Os dados também precisam ser verificados no backend.
+            </div>
+          </div>
+          <div class="demo">
+            <form id="formCadastro" novalidate>
+              <label for="nome">Nome completo</label>
+              <input id="nome" name="nome" autocomplete="name" aria-describedby="erroNome">
+              <p class="field-error" id="erroNome" aria-live="polite"></p>
+
+              <label for="email">E-mail</label>
+              <input id="email" name="email" type="email" autocomplete="email" aria-describedby="erroEmail">
+              <p class="field-error" id="erroEmail" aria-live="polite"></p>
+
+              <label for="senha">Senha</label>
+              <input id="senha" name="senha" type="password" autocomplete="new-password" aria-describedby="erroSenha">
+              <p class="field-error" id="erroSenha" aria-live="polite"></p>
+
+              <label for="curso">Curso de interesse</label>
+              <select id="curso" name="curso" aria-describedby="erroCurso">
+                <option value="">Selecione uma opção</option>
+                <option value="TDS">Técnico em Desenvolvimento de Sistemas</option>
+                <option value="ADS">Análise e Desenvolvimento de Sistemas</option>
+                <option value="Outro">Outro</option>
+              </select>
+              <p class="field-error" id="erroCurso" aria-live="polite"></p>
+
+              <p><button type="submit">Validar cadastro</button></p>
+              <p class="status" id="resultadoFormulario" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>JavaScript é a linguagem que dá vida às páginas web.</footer>
+
+  <script>
+    // 1. Alteração de conteúdo
+    document.querySelector("#btnMensagem").addEventListener("click", () => {
+      document.querySelector("#mensagem").textContent = "Olá, JavaScript!";
+      document.querySelector("#statusMensagem").textContent = "O texto foi alterado pelo JavaScript.";
+    });
+
+    // 2. Eventos e estado
+    let cliques = 0;
+    const contador = document.querySelector("#contador");
+    document.querySelector("#btnContador").addEventListener("click", () => {
+      cliques++;
+      contador.textContent = cliques;
+    });
+    document.querySelector("#btnZerar").addEventListener("click", () => {
+      cliques = 0;
+      contador.textContent = cliques;
+    });
+
+    // 3. Manipulação do DOM e classes CSS
+    document.querySelector("#btnEstilo").addEventListener("click", () => {
+      document.querySelector("#caixa").classList.toggle("highlight");
+    });
+
+    // 4. Arrays e repetição
+    document.querySelector("#btnLinguagens").addEventListener("click", () => {
+      const linguagens = ["HTML", "CSS", "JavaScript"];
+      const lista = document.querySelector("#listaLinguagens");
+      lista.replaceChildren();
+      linguagens.forEach((linguagem) => {
+        const item = document.createElement("li");
+        item.textContent = linguagem;
+        lista.appendChild(item);
+      });
+    });
+
+    // 5. Funções e cálculos
+    function somar(a, b) {
+      return a + b;
+    }
+    document.querySelector("#btnSomar").addEventListener("click", () => {
+      const a = Number(document.querySelector("#numeroA").value);
+      const b = Number(document.querySelector("#numeroB").value);
+      document.querySelector("#resultadoSoma").textContent = `Resultado: ${somar(a, b)}`;
+    });
+
+    // 6. API: a interface é atualizada com os dados retornados
+    document.querySelector("#btnUsuarios").addEventListener("click", async () => {
+      const botao = document.querySelector("#btnUsuarios");
+      const status = document.querySelector("#statusUsuarios");
+      const lista = document.querySelector("#listaUsuarios");
+      botao.disabled = true;
+      status.className = "status";
+      status.textContent = "Carregando...";
+      lista.replaceChildren();
+
+      try {
+        const resposta = await fetch("https://jsonplaceholder.typicode.com/users");
+        if (!resposta.ok) throw new Error("A API respondeu com um erro.");
+        const usuarios = await resposta.json();
+
+        usuarios.slice(0, 5).forEach((usuario) => {
+          const item = document.createElement("li");
+          item.textContent = `${usuario.name} — ${usuario.email}`;
+          lista.appendChild(item);
+        });
+        status.textContent = "Cinco usuários carregados com sucesso.";
+        status.classList.add("success");
+      } catch (erro) {
+        status.textContent = "Não foi possível carregar os dados. Verifique sua conexão e tente novamente.";
+        status.classList.add("error");
+      } finally {
+        botao.disabled = false;
+      }
+    });
+
+    // 7. Validação do formulário
+    const formulario = document.querySelector("#formCadastro");
+    const campos = {
+      nome: document.querySelector("#nome"),
+      email: document.querySelector("#email"),
+      senha: document.querySelector("#senha"),
+      curso: document.querySelector("#curso")
+    };
+
+    function mostrarErro(campo, mensagem) {
+      document.querySelector(`#erro${campo[0].toUpperCase()}${campo.slice(1)}`).textContent = mensagem;
+      campos[campo].setAttribute("aria-invalid", mensagem ? "true" : "false");
+    }
+
+    function emailValido(valor) {
+      // Verificação didática básica; não garante que o endereço exista.
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
+    }
+
+    formulario.addEventListener("submit", (evento) => {
+      evento.preventDefault();
+      const resultado = document.querySelector("#resultadoFormulario");
+      resultado.textContent = "";
+      resultado.className = "status";
+
+      let valido = true;
+      const nome = campos.nome.value.trim();
+      const email = campos.email.value.trim();
+      const senha = campos.senha.value;
+      const curso = campos.curso.value;
+
+      const erros = {
+        nome: nome.length < 2 ? "Informe seu nome (pelo menos 2 caracteres)." : "",
+        email: emailValido(email) ? "" : "Informe um e-mail válido.",
+        senha: senha.length >= 8 ? "" : "A senha deve ter pelo menos 8 caracteres.",
+        curso: curso ? "" : "Selecione um curso."
+      };
+
+      Object.entries(erros).forEach(([campo, mensagem]) => {
+        mostrarErro(campo, mensagem);
+        if (mensagem) valido = false;
+      });
+
+      if (valido) {
+        resultado.textContent = `Cadastro validado! Obrigado, ${nome}. (Exemplo didático: os dados não foram enviados a um servidor.)`;
+        resultado.classList.add("success");
+        formulario.reset();
+        Object.keys(campos).forEach((campo) => mostrarErro(campo, ""));
+      } else {
+        resultado.textContent = "Revise os campos destacados antes de continuar.";
+        resultado.classList.add("error");
+      }
+    });
+
+    // Remove a mensagem de erro enquanto o usuário corrige o campo.
+    Object.entries(campos).forEach(([campo, elemento]) => {
+      elemento.addEventListener("input", () => {
+        mostrarErro(campo, "");
+        const resultado = document.querySelector("#resultadoFormulario");
+        resultado.textContent = "";
+        resultado.className = "status";
+      });
+      elemento.addEventListener("change", () => {
+        mostrarErro(campo, "");
+      });
+    });
+  </script>
+</body>
+</html>
